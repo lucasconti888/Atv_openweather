@@ -1,5 +1,15 @@
 # Criação de uma ETL em flask
 
+## Como iniciar 
+
+Primeiro é necessário coletar uma API Key para substituir no campo respectivo do código. A API Key pode ser coletada no seguinte URL:
+
+https://home.openweathermap.org/api_keys
+
+Após isso, para rodar o código, será necessário realizar a instalação dos módulos utilizados. O seguinte comando, seguido do nome do respectivo módulo, pode resolver esta questão:
+
+python -m pip install nomedomodulo
+
 ## Módulos utilizados:
 
 * Flask e render_template: Utilizados para renderizar template HTML e criar a aplicação.
