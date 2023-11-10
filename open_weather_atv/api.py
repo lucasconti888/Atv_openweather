@@ -55,11 +55,6 @@ def funcao_etl():
 
     return lista_dados_climaticos
 
-@app.route('/etl', methods=['GET'])
-def etl_route():
-    lista_dados_climaticos = funcao_etl()
-    return 'Dados extraídos e armazenados no banco de dados'
-
 @app.route('/weather_data', methods=['GET'])
 def display_weather_data():
     weather_data = WeatherData.query.all()
