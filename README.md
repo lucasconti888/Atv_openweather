@@ -29,7 +29,7 @@ A classe WeatherData é um modelo para a tabela SQLite. Essa classe é herdada d
 
 A função ETL realiza um GET da API para cada cidade, extrai o JSON dos dados recebidos e insere na base de dados. 
 
-As rotas /etl e /weather_data são utilizadas para testar a API e analisar os dados coletados.
+A rota /weather_data é utilizada para analisar os dados coletados em um HTML básico feito com essa finalidade.
 
 O último bloco é o  "if __name__ == '__main__'", que a execução do script seja feita de forma direta e não por meio da importação do módulo. Por fim, a função db.create_all() é chamada no context da aplicação Flask para criar as tabelas com base nos modelos definidos.
 
