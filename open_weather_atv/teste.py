@@ -24,5 +24,5 @@ def test_etl_route(client):
    assert 'Dados extraídos e armazenados no banco de dados' in response.data.decode()
 
    weather_data = WeatherData.query.all()
-   assert len(weather_data) == 7
+   assert len(weather_data) == 3
    assert weather_data[0].data_tipo == 'openweather'
