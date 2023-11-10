@@ -25,7 +25,7 @@ A conexão com a database SQLite é configurada com app.config['SQLALCHEMY_DATAB
 
 " brasil_timezone = pytz.timezone('America/Sao_Paulo') " define a timezone.
 
-A classe WeatherData é um modelo para a tabela SQLite. Essa classe é herdada do db.Model, do SQLAlchemy.
+A classe WeatherData é um modelo para a tabela SQLite. Essa classe é herdada do db.Model, do SQLAlchemy. A chave primária é o ID, como mostra o parâmetro "primary_key=True"
 
 A função ETL realiza um GET da API para cada cidade, extrai o JSON dos dados recebidos e insere na base de dados. 
 
