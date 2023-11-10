@@ -26,6 +26,8 @@ O último bloco é o  "if __name__ == '__main__'", que a execução do script se
 ## Teste
 
 O arquivo teste.py permite a realização de alguns testes com o uso do pytest. 
+
 Para rodar o teste, deve-se inserir no terminal o comando "python -m pytest teste.py". 
-Os testes são definidos nos blocos que começam com o comando "assert" e foram definidos alguns como do tipo dos dados, que deve ser "openweather", e do tamanho do array que deve ser igual a 7. 
+
+Os testes são definidos nos blocos que começam com o comando "assert" e foram definidos alguns como do tipo dos dados, que deve ser "openweather", e do tamanho do array que deve ser igual a 3. 
   
