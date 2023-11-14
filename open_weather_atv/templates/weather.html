@@ -1,38 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Weather Data</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta - Open Weather</title>
 </head>
 <body>
+    <div class="index">
+        <div class="div">
+            <div class="text">Consulta<br/>Open Weather</div>
+            <button id="acessarDados" class="text-button">Acessar Dados</button>
+        </div>
+    </div>
 
-    <h1>Weather Data</h1>
-    <button id="voltarInicio" class="text-button">Voltar</button>
-
-    <table border="1">
-      <tr>
-          <th>ID</th>
-          <th>Data da ingestão</th>
-          <th>Tipo</th>
-          <th>Valores</th>
-          <th>Uso</th>
-      </tr>
-      {% for entry in weather_data %}
-      <tr>
-          <td>{{ entry.id }}</td>
-          <td>{{ entry.data_ingestao }}</td>
-          <td>{{ entry.data_type }}</td>
-          <!-- <td>{{ main_parameter }}</td> -->
-          <td>{{ entry.values }}</td>
-          <td>{{ entry.usage }}</td>
-      </tr>
-      {% endfor %}
-  </table>
-
-  <script>
-    document.getElementById('voltarInicio').addEventListener('click', function() {
-        window.location.href = 'http://127.0.0.1:5000/';
-    });
-  </script>
-
+    <script>
+        document.getElementById('acessarDados').addEventListener('click', function() {
+            window.location.href = '/weather_data';
+        });
+    </script>
 </body>
 </html>
