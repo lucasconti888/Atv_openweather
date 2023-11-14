@@ -5,8 +5,10 @@ from datetime import datetime
 import json
 import requests
 import pytz
+import logging
 
 app = Flask(__name__)
+app.logger.setLevel(logging.DEBUG)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///etl_database.db'
 db = SQLAlchemy(app)
@@ -17,11 +19,15 @@ def get_brasil_datetime():
     return datetime.now(brasil_timezone)
 
 class WeatherData(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    data_ingestao = db.Column(db.DateTime, default=get_brasil_datetime)
-    data_tipo = db.Column(db.String(50))
-    valores = db.Column(db.String(100))
-    uso = db.Column(db.String(100))
+   id = db.Column(db.Integer, primary_key=True)
+   data_ingestao = db.Column(db.DateTime, default=get_brasil_datetime)
+   data_type = db.Column(db.String(50))
+   values = db.Column(db.String(100))
+   usage = db.Column(db.String(100))
+
+def weather_data_to_json(weather_data):
+   return json.dumps(weather_data, default=lambda o: o.__dict__, 
+                    sort_keys=True, indent=4)
 
 def funcao_etl():
     
@@ -40,9 +46,9 @@ def funcao_etl():
             weather_data_json = json.dumps(weather_data)
             
             weather_entry = WeatherData(
-                data_tipo='openweather',
-                valores=weather_data_json,
-                uso='previsao_climatica'
+                data_type='openweather',
+                values=weather_data_json,
+                usage='previsao_climatica'
             )
             
             db.session.add(weather_entry)
@@ -51,14 +57,26 @@ def funcao_etl():
             lista_dados_climaticos.append(weather_data_json)  
             
         else:
+            app.logger.error(f'Erro na extração dos dados da API OpenWeather para {city}')
             return f'Erro na extração dos dados da API OpenWeather para {city}', 500
-
+        
     return lista_dados_climaticos
+
+@app.route('/', methods=['GET'])
+def etl_route():
+    lista_dados_climaticos = funcao_etl()
+    return render_template('weather.html')
 
 @app.route('/weather_data', methods=['GET'])
 def display_weather_data():
     weather_data = WeatherData.query.all()
+    
     return render_template('weather_table.html', weather_data=weather_data)
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
 
 if __name__ == '__main__':
     with app.app_context():
