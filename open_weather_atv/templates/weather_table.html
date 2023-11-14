@@ -6,6 +6,7 @@
 <body>
 
     <h1>Weather Data</h1>
+    <button id="voltarInicio" class="text-button">Voltar</button>
 
     <table border="1">
       <tr>
@@ -19,13 +20,19 @@
       <tr>
           <td>{{ entry.id }}</td>
           <td>{{ entry.data_ingestao }}</td>
-          <td>{{ entry.data_tipo }}</td>
-          <td>{{ entry.valores }}</td>
-          <td>{{ entry.uso }}</td>
+          <td>{{ entry.data_type }}</td>
+          <!-- <td>{{ main_parameter }}</td> -->
+          <td>{{ entry.values }}</td>
+          <td>{{ entry.usage }}</td>
       </tr>
       {% endfor %}
   </table>
 
+  <script>
+    document.getElementById('voltarInicio').addEventListener('click', function() {
+        window.location.href = 'http://127.0.0.1:5000/';
+    });
+  </script>
 
 </body>
 </html>
